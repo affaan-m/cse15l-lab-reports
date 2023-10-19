@@ -1,4 +1,4 @@
-## Lab Report 2 - Servers and SSH Keys (Week 3)
+## Lab Report 3 - Servers and SSH Keys (Week 3)
 
 ### Introduction
 
@@ -111,7 +111,7 @@ ls ~/.ssh/
 ##### Demonstrating Passwordless Login
 **Terminal Command**:  
 ```bash
-ssh your_course_specific_account@ieng6.ucsd.edu
+ssh cs15lfa23se@ieng6.ucsd.edu
 ```
 **Screenshot**:  
 
