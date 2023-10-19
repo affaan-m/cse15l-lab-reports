@@ -1,4 +1,4 @@
-# Detailed Insights on SSH, Web Server Operations, and Networking
+# Lab Report 2 - Detailed Insights on SSH, Web Server Operations, and Networking
 
 <img width="616" alt="Screen Shot 2023-10-18 at 2 56 03 PM" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/ac93d817-de28-449b-bea3-f46b17815da6">
 
