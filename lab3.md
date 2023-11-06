@@ -1,3 +1,4 @@
+
 # Lab Report 3 - Bugs and Commands (Week 5)
 
 ## Part 1 - Bugs
@@ -35,11 +36,11 @@ Given the nature of the bugs, most inputs will result in a failure. However, an 
 #### `reverseInPlace` Method Test with Non-Failure Input
 
 ```java
-@Test
-public void testReverseInPlaceNonFailure() {
-    int[] input = {1};
-    ArrayExamples.reverseInPlace(input);
-    assertArrayEquals(new int[]{1}, input);
+@Test 
+public void testReverseInPlace() {
+  int[] input1 = { 3 };
+  ArrayExamples.reverseInPlace(input1);
+  assertArrayEquals(new int[]{ 3 }, input1);
 }
 ```
 
@@ -47,18 +48,17 @@ public void testReverseInPlaceNonFailure() {
 
 ```java
 @Test
-public void testReversedNonFailure() {
-    int[] input = {1};
-    int[] result = ArrayExamples.reversed(input);
-    assertArrayEquals("A single-element array should be equal to itself when reversed", new int[]{1}, result);
+public void testReversed() {
+  int[] input1 = { };
+  assertArrayEquals(new int[]{ }, ArrayExamples.reversed(input1));
 }
 ```
 
 ### Symptom
 
-![JUnit Test Output](URL_TO_IMAGE)
+#### JUnit Test Output
 
-*Replace `URL_TO_IMAGE` with the actual URL to the screenshot of your JUnit test output.*
+![JUnit Test Output](https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/b7f0034f-0019-4294-9e42-59d6371c274a)
 
 ### The Bug and Fix
 
@@ -67,7 +67,7 @@ public void testReversedNonFailure() {
 ##### Before Fix
 
 ```java
-// Buggy code block
+// Buggy implementation of reverseInPlace
 static void reverseInPlace(int[] arr) {
   for(int i = 0; i < arr.length; i += 1) {
     arr[i] = arr[arr.length - i - 1];
@@ -78,7 +78,7 @@ static void reverseInPlace(int[] arr) {
 ##### After Fix
 
 ```java
-// Fixed code block
+// Corrected implementation of reverseInPlace
 static void reverseInPlace(int[] arr) {
   for(int i = 0; i < arr.length / 2; i += 1) {
     int temp = arr[i];
@@ -93,7 +93,7 @@ static void reverseInPlace(int[] arr) {
 ##### Before Fix
 
 ```java
-// Buggy code block
+// Buggy implementation of reversed
 static int[] reversed(int[] arr) {
   int[] newArray = new int[arr.length];
   for(int i = 0; i < arr.length; i += 1) {
@@ -106,7 +106,7 @@ static int[] reversed(int[] arr) {
 ##### After Fix
 
 ```java
-// Fixed code block
+// Corrected implementation of reversed
 static int[] reversed(int[] arr) {
   int[] newArray = new int[arr.length];
   for(int i = 0; i < arr.length; i += 1) {
@@ -118,9 +118,7 @@ static int[] reversed(int[] arr) {
 
 ### Explanation of the Fix
 
-The `reverseInPlace` method's fix ensures that the swapping of elements is done correctly by only iterating up to the middle of the array and using a temporary variable to hold the value during the swap.
-
-For the `reversed` method, the correction involves properly assigning the reversed values to a new array `newArray` and then returning this new array instead of the original, which remains unchanged.
+The `reverseInPlace` method's fix ensures that the swapping of elements is done correctly by only iterating up to the middle of the array and using a temporary variable to hold the value during the swap
 
 ## Part 2 - Researching Commands
 
