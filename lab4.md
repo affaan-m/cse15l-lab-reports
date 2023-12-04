@@ -16,7 +16,7 @@ The subsequent runs incorporated various efficiency techniques using Vim and Bas
 
 - **Keys pressed**: `<ssh><space>cs15lfa23se@ieng6.ucsd.edu<enter>`
 - **Effect**: Successfully authenticated and accessed the ieng6 server.
-- **Screenshot**: [Login Screenshot](<img width="549" alt="Screen Shot 2023-12-03 at 9 26 19 PM" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/c511cff7-dc2e-4e41-99c5-6b4c59868280">)
+- **Screenshot**: ![Login Screenshot]<img width="549" alt="Screen Shot 2023-12-03 at 9 26 19 PM" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/c511cff7-dc2e-4e41-99c5-6b4c59868280">
 
 ### Step 5: Cloning the Repository
 
