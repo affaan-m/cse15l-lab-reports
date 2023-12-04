@@ -38,6 +38,7 @@ The subsequent runs incorporated various efficiency techniques using Vim and Bas
 - **Keys pressed**: `<vim><space>ListExamples.java<enter><k><k><i>2<Right><Backspace><Esc>:wq<enter>`
 - **Effect**: Opened the `ListExamples.java` file in Vim, navigated to the problematic code, corrected it, and saved the changes.
 - **Vim Editing Screenshot**:
+
 <img width="588" alt="Screen Shot 2023-12-03 at 9 30 07 PM" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/43536719-1098-42d1-aaba-a38722d3d187">)
 - **Reran Tests Screenshot**:
 <img width="461" alt="Screen Shot 2023-12-03 at 9 30 24 PM" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/3ca7ea66-b02d-43f5-b21c-8abb939df257">
