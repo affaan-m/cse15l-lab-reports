@@ -1,6 +1,8 @@
 # Lab Report 5: Putting it All Together
 ### Affaan Mustafa - CSE15LW24 - Prof. Joe Politz
 
+---
+### Part 1: Debugging Scenario
 **Title:** Help Needed: AssertionErrors When Running JUnit Tests for ProcessNames
 
 **Body:**
@@ -9,8 +11,7 @@ Hello everyone,
 
 I'm currently tackling a lab assignment where the goal is to process names from a file, adjust them to a specific case, and then write the modified names into another file. I've written some JUnit tests to confirm that my code works correctly, but when I run the tests, I get `AssertionError`s for my test cases. Here is the terminal output when I execute my tests:
 
-![JUnit Test Failures](<img width="514" alt="image" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/865f0263-3261-4de0-834e-e6157722f951">
-)
+![JUnit Test Failures](https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/865f0263-3261-4de0-834e-e6157722f951)
 
 It seems like there's a logical error with the way my program is processing the names, especially with case sensitivity and possibly with the file writing as well. Can someone help me pinpoint the exact problem?
 
@@ -41,7 +42,7 @@ Thank you for the prompt response! Here is the content of my input and output fi
   RITA
   ```
   - Expected Output (testAllUpperCase): `["ADAM", "BREANA", "JOHN", "JOSHUA", "RITA"]`
-  - Actual Output: Mismatching, as the actual output contains names that are not present in the input file 【22†source】.
+  - Actual Output: Mismatching, as the actual output contains names that are not present in the input file【22†source】.
 
 - Content of `inputMixedCase.txt`:
   ```
@@ -55,7 +56,7 @@ Thank you for the prompt response! Here is the content of my input and output fi
   Bianca
   ```
   - Expected Output (testMixedCase): `["Alice", "bob", "Charlie", "david", "Eve", "Frank"]`
-  - Actual Output: The output seems to include only uppercase names and is sorted in a case-sensitive way, not considering lowercase names 【23†source】.
+  - Actual Output: The output seems to include only uppercase names and is sorted in a case-sensitive way, not considering lowercase names【23†source】.
 
 Here is the excerpt from my `ProcessNames.java` where I suspect the logical errors are:
 ```java
@@ -100,7 +101,6 @@ if [ $? -ne 0 ]; then
 else
     echo "All tests passed successfully."
 fi
-
 ```
 【24†source】
 
@@ -111,7 +111,9 @@ A Student Seeking Clarity
 
 **Response from a TA**
 
-Hi,
+Hi
+
+,
 
 Thank you for providing the additional information. Based on what you've shared, I can see two main issues in your `ProcessNames.java` code that need to be addressed:
 
@@ -234,7 +236,9 @@ I followed the instructions provided and made the suggested code changes to both
 
 Here's the terminal output confirming the successful test execution:
 
-![All tests passed successfully](<img width="421" alt="image" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/5287814b-18c6-4ed1-af4b-725ce59964f3">)
+![All tests passed successfully](https://github.com/affaan-m/cse15l-lab-reports
+
+/assets/124439313/5287814b-18c6-4ed1-af4b-725ce59964f3)
 
 This has been an invaluable learning experience, not only in debugging and writing unit tests but also in understanding the importance of considering case sensitivity during string manipulation and sorting.
 
@@ -243,10 +247,9 @@ Thank you so much for the help!
 Best,  
 A Grateful Student
 
+**Project Setup Recap:**
 
-Certainly! Let's recap the entire debugging process, detailing the file structure, the contents of the files involved, the commands executed, and the edits made to resolve the bug.
-
-**File & Directory Structure Needed:**
+**File & Directory Structure:**
 ```
 LABREPORT/
 ├── src/
@@ -263,145 +266,31 @@ LABREPORT/
 │   └── hamcrest-core-1.3.jar
 ├── process.sh
 └── outputTest.txt (generated after running the process)
+```
 
 **Contents of Each File Before Fixing the Bug:**
 
-1. **ProcessNames.java** (before fix):
-```java
-import java.io.*;
-import java.util.*;
-
-public class ProcessNames {
-    public static void main(String[] args) throws IOException {
-        if (args.length > 1) {
-            processFile(args[0], args[1]);
-        } else {
-            System.out.println("Please provide input and output file paths.");
-        }
-    }
-    
-    public static void processFile(String inputFilePath, String outputFilePath) throws IOException {
-        Scanner in = new Scanner(new File(inputFilePath));
-        List<String> names = new ArrayList<>();
-        
-        while (in.hasNext()) {
-            String name = in.nextLine().trim();
-            if (!name.isEmpty() && Character.isUpperCase(name.charAt(0))) {
-                names.add(name);
-            }
-        }
-        in.close();
-        
-        Collections.sort(names);
-        
-        PrintWriter out = new PrintWriter(new FileWriter(outputFilePath));
-        for (String name : names) {
-            out.println(name);
-        }
-        out.close(); 
-    }
-}
-```
-
-2. **ProcessNamesTest.java** (before fix):
-```java
-import static org.junit.Assert.*;
-import org.junit.Test;
-import java.io.*;
-
-public class ProcessNamesTest {
-
-    @Test
-    public void testAllUpperCase() throws IOException {
-        ProcessNames.processFile("inputAllUpperCase.txt", "outputTest.txt");
-        assertTrue(checkFileContent("outputTest.txt", new String[]{"Alice", "Charlie", "Eve", "Frank"}));
-    }
-
-    @Test
-    public void testMixedCase() throws IOException {
-        ProcessNames.processFile("inputMixedCase.txt", "outputTest.txt");
-        assertTrue(checkFileContent("outputTest.txt", new String[]{"Alice", "bob", "Charlie", "david", "Eve", "Frank"}));
-    }
-
-    private boolean checkFileContent(String filePath, String[] expectedLines) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
-        int i = 0;
-        while ((line = reader.readLine()) != null) {
-            if (i >= expectedLines.length || !line.equals(expectedLines[i])) {
-                reader.close();
-                return false;
-            }
-            i++;
-        }
-        reader.close();
-        return i == expectedLines.length;
-    }
-}
-```
-
-3. **inputAllUpperCase.txt**:
-```
-ADAM
-JOHN
-BREANA
-JOSHUA
-RITA
-```
-
-4. **inputMixedCase.txt**:
-```
-Alice
-bob
-Charlie
-david
-Eve
-Frank
-affaan
-Bianca
-```
-
-5. **process.sh**:
-```bash
-#!/bin/bash
-
-# Compile the test class
-javac -cp .:junit-4.13.2.jar ProcessNamesTest.java
-if [ $? -ne 0 ]; then
-    echo "Compilation failed."
-    exit 1
-else
-    echo "Compilation successful."
-fi
-
-# Run the tests
-java -cp .:junit-4.13.2.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore ProcessNamesTest
-if [ $? -ne 0 ]; then
-    echo "Tests failed."
-    exit 1
-else
-    echo "All tests passed successfully."
-fi
-```
+- `ProcessNames.java`: Contained logic for processing and sorting names which was case-sensitive and only included names starting with an uppercase letter.
+- `ProcessNamesTest.java`: Test cases expected specific sorted names and failed due to the bugs in `ProcessNames.java`.
 
 **Command Line to Trigger the Bug:**
-- To compile and run the tests, triggering the bug:
+- The bug was triggered by running the shell script:
   ```
   bash process.sh
   ```
 
-**Description of What to Edit to Fix the Bug:**
+**Edits to Fix the Bug:**
 
-To fix the bug, the following edits were made:
+- Removed case sensitivity from the name processing logic in `ProcessNames.java`.
+- Implemented case-insensitive sorting in `ProcessNames.java`.
+- Updated `ProcessNamesTest.java` to adjust expected outputs to be case-insensitive and match the updated logic in `ProcessNames.java`.
 
-1. **In `ProcessNames.java`:**
-    - Removed the condition `Character.isUpperCase(name.charAt(0))` to process all names, not just those beginning with an uppercase letter.
-    - Replaced `Collections.sort(names)` with `Collections.sort(names, String.CASE_INSENSITIVE_ORDER)` for case-insensitive sorting of names.
+With these changes, the project was successfully debugged and the tests passed as expected.
 
-2. **In `ProcessNamesTest.java`:**
-    - Updated the expected results in the `testAllUpperCase` and `testMixedCase` methods to match the actual output.
-    - Changed the comparison in `checkFileContent` from `!line.equals(expectedLines[i])` to `!line.equalsIgnoreCase(expectedLines[i])` for a case-insensitive check.
+### Part 2 – Reflection
 
-With these edits, the program was adjusted to process and sort names correctly regardless of
+During the latter part of this quarter, I was able to take the skills honed in CSE15L and apply them to an entirely different domain—economic research. Working as a research assistant at the San Diego Supercomputer Center, I found myself immersed in the high-performance computing environment. Here, the terminal wasn't just a tool; it was my gateway to leverage the power of cluster computing.
 
- their case, and the tests were updated to accurately reflect the expected behavior. Running the `bash process.sh` command again then resulted in all tests passing.
+I used bash scripts extensively, not for academic exercises, but to handle real-world data processing tasks. The ability to write optimized scripts for sbatch submission has been a game-changer, allowing me to process large datasets with efficiency that would be unattainable on a standard computer. My workflow often involved using vim to edit these scripts, a skill that at first seemed arcane, but now allows me to navigate and modify files with a speed I couldn't have imagined before.
+
+The simple commands like cat, sorting data, and output redirection, which we practiced in labs, turned out to be the building blocks for complex data processing tasks. This experience has not only reinforced my technical knowledge but has also provided a clear illustration of how these skills transfer across disciplines, empowering me to contribute meaningfully to research that extends far beyond my initial academic setting.
