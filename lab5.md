@@ -236,7 +236,7 @@ I followed the instructions provided and made the suggested code changes to both
 
 Here's the terminal output confirming the successful test execution:
 
-![All tests passed successfully](<img width="421" alt="image" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/d2d93294-75d3-4eec-bc16-6501ea435431">)
+![All tests passed successfully]<img width="421" alt="image" src="https://github.com/affaan-m/cse15l-lab-reports/assets/124439313/d2d93294-75d3-4eec-bc16-6501ea435431">
 
 This has been an invaluable learning experience, not only in debugging and writing unit tests but also in understanding the importance of considering case sensitivity during string manipulation and sorting.
 
